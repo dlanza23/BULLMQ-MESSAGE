@@ -1,0 +1,25 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: bullmq-redis
+    ports:
+      - '6379:6379'
+    command: ['redis-server', '--appendonly', 'yes']
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+
+  mongo:
+    image: mongo:latest
+    container_name: bullmq-mongo
+    ports:
+      - '27017:27017'
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+
+  
+
+volumes:
+  redis-data:
+  mongo-data:
